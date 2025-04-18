@@ -1,0 +1,12 @@
+{
+  "name": "@paste-it/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./data": {
+      "import": "./data/index.ts",
+      "types": "./data/index.ts"
+    }
+  }
+}
