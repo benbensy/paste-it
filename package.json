@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "paste-it-mono",
   "private": true,
   "scripts": {
     "build": "turbo run build",
