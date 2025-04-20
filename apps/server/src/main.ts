@@ -11,8 +11,8 @@ const dirname = import.meta.dirname;
 const app = Fastify({
   logger: {
     transport: {
-        target: '@fastify/one-line-logger'
-    }
+      target: "@fastify/one-line-logger",
+    },
   },
 });
 
@@ -30,6 +30,15 @@ s.registerRouter(
   app,
   {
     logInitialization: true,
+    requestValidationErrorHandler(err, _request, reply) {
+      const firstIssue = err.body?.issues.at(0);
+
+      return reply.status(400).send({
+        error: firstIssue?.code,
+        message: firstIssue?.message,
+        statusCode: 400,
+      });
+    },
   }
 );
 

@@ -134,11 +134,7 @@ importers:
 
   apps/web: {}
 
-  packages/data:
-    dependencies:
-      '@paste-it/db':
-        specifier: workspace:*
-        version: link:../db
+  packages/data: {}
 
   packages/db: {}
 

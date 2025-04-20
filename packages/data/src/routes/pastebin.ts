@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { c } from "../contract";
 
 import { PastebinCreateInputSchema, PastebinWithRelationsSchema } from '@paste-it/db/zod'
@@ -25,7 +24,7 @@ export const contract = c.router({
     method: "GET",
     path: `/pastebin/list`,
     responses: {
-      200: z.array(PastebinWithRelationsSchema),
+      200: PastebinWithRelationsSchema.array(),
     },
     summary: "Get pastebin list",
   },
