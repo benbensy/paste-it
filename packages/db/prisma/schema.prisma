@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output   = "../generated/zod"
+  createRelationValuesTypes = true
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVITE
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String @unique
+  email    String @unique
+  nickName String
+
+  pastebin Pastebin[]
+}
+
+model Pastebin {
+  id          String     @id @default(uuid())
+  title       String
+  content     String
+  attachments File[]
+  visibility  Visibility @default(PUBLIC)
+
+  createdAt DateTime @default(now())
+
+  createdBy   User?   @relation(fields: [createdById], references: [id])
+  createdById String?
+}
+
+model File {
+  id        String   @id @default(uuid())
+  path      String
+  createdAt DateTime @default(now())
+
+  pastebin   Pastebin? @relation(fields: [pastebinId], references: [id])
+  pastebinId String?
+}

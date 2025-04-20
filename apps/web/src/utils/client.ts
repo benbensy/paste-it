@@ -1,5 +1,5 @@
 import { initQueryClient } from '@ts-rest/react-query'
-import { contract } from "@paste-it/shared/data";
+import { contract } from "@paste-it/data";
 
 export const client = initQueryClient(contract, {
     baseUrl: '/api',

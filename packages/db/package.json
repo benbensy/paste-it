@@ -1,0 +1,18 @@
+{
+  "name": "@paste-it/db",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./client": "./src/client.ts",
+    "./prisma": {
+        "default": "./generated/prisma/index.js",
+        "types": "./generated/prisma/index.d.ts"
+    },
+    "./zod": "./generated/zod/index.ts"
+  },
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev --skip-generate",
+    "db:deploy": "prisma migrate deploy"
+  }
+}
